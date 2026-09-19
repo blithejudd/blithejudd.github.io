@@ -18,6 +18,7 @@
 - `tests/browser.mjs` — реальный Chrome/CDP, проверка UI и mock API. Без npm-зависимостей.
 - `scripts/optimize-images.py` — необязательная генерация превью через Pillow.
 - `scripts/supabase-setup.mjs` — локальный Management API оператор: inspect/provision/audit. Читает игнорируемый `.env.management`, не выводит токен, provisioning разрешён только для пустого проекта.
+- `scripts/check-deployment.mjs <run-id>` — read-only проверка публичного GitHub Actions run, совпадения ресурсов на домене и отсутствия локальных файлов токена на сайте.
 - `tests/live-public.mjs` — явные проверки реального публичного API и запрета анонимных операций на случайных probe IDs. `tests/browser.mjs --live` дополнительно проверяет реальную галерею и экран входа без mock API.
 - `CNAME`, `.nojekyll`, `robots.txt`, `sitemap.xml`, `favicon.svg` — статическое размещение/метаданные.
 

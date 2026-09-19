@@ -107,7 +107,9 @@ node D:\blithejudd.github.io\tests\browser.mjs
 
 ## Публикация
 
-Пользователь разрешил публикацию в существующей ветке `main`. GitHub Pages: Deploy from a branch → `main` → `/ (root)`. `CNAME` сохранён. Сборка не нужна. SQL уже применён; Edge Function разворачивается отдельно в Supabase. Результат публикации фиксируется в `D:\blithejudd.github.io\docs\STATE.md`.
+Новый сайт опубликован: **https://gulievi.me/**, панель — **https://gulievi.me/admin/**. Коммит `e10472b`, GitHub Pages run `35463158048` завершён успешно; опубликованные ресурсы проверены. Владельца панели ещё нужно создать (ожидается email), Telegram выключен.
+
+GitHub Pages: Deploy from a branch → `main` → `/ (root)`. `CNAME` сохранён. Сборка не нужна. SQL уже применён; Edge Function разворачивается отдельно в Supabase. Результат публикации фиксируется в `D:\blithejudd.github.io\docs\STATE.md`.
 
 Главный экран, биография, цены и контакты редактируются в `index.html`; оформление — `css/site.css`. Ссылка на Instagram сохранена; фиктивные телефон/WhatsApp и общая ссылка Facebook убраны.
 
