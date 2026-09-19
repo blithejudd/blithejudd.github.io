@@ -116,7 +116,7 @@ node D:\blithejudd.github.io\tests\browser.mjs
 
 ## Публикация
 
-Сайт: **https://gulievi.me/**, панель — **https://gulievi.me/admin/**. Первоначальная публикация: коммит `e10472b`, Pages run `35463158048`. Текущая переработка: ровная галерея 3/2 колонки, компактный первый экран, заметная биография и подпись Zuka Gulievi локальным шрифтом Allura (SIL OFL). Временный владелец создан; Telegram выключен. Актуальный статус публикации — в `docs/STATE.md`.
+Сайт: **https://gulievi.me/**, панель — **https://gulievi.me/admin/**. Переработка опубликована коммитом `0a34083`, Pages run `35466772422` — success; 12 опубликованных ресурсов сверены с локальными. Ровная галерея 3/2 колонки, компактный первый экран, заметная биография и подпись Zuka Gulievi локальным шрифтом Allura (SIL OFL). Временный владелец создан; Telegram выключен. Актуальный статус — в `docs/STATE.md`.
 
 GitHub Pages: Deploy from a branch → `main` → `/ (root)`. `CNAME` сохранён. Сборка не нужна. SQL уже применён; Edge Function разворачивается отдельно в Supabase. Результат публикации фиксируется в `D:\blithejudd.github.io\docs\STATE.md`.
 
