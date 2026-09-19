@@ -1,414 +1,65 @@
 <!doctype html>
 <html lang="ka">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ZUKA GULIEVI | ფოტოგრაფი თბილისში — Editorial, Portrait &amp; Wedding</title>
-    <meta name="description" content="ზუკა გულიევის ფოტოსესიები თბილისში და მთელ საქართველოში. ედიტორიალური, პორტრეტული, საქორწინო და საოჯახო გადაღება თანამედროვე ესთეტიკით." />
-    <meta name="keywords" content="ფოტოგრაფი თბილისში, ფოტოსესია თბილისი, ედიტორიალური გადაღება, პორტრეტული ფოტოგრაფია, საქორწინო ფოტოგრაფი, საოჯახო ფოტოსესია, ფოტოგრაფი საქართველოში" />
-
-    <meta property="og:title" content="ZUKA GULIEVI | ფოტოგრაფი თბილისში — Editorial, Portrait &amp; Wedding" />
-    <meta property="og:description" content="ზუკა გულიევის ფოტოსესიები თბილისში და მთელ საქართველოში. ედიტორიალური, პორტრეტული, საქორწინო და საოჯახო გადაღება თანამედროვე ესთეტიკით." />
-    <meta property="og:image" content="images/hero-bg.webp" />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://zuka-gulievi.com/" />
-
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="ZUKA GULIEVI | ფოტოგრაფი თბილისში — Editorial, Portrait &amp; Wedding" />
-    <meta name="twitter:description" content="ზუკა გულიევის ფოტოსესიები თბილისში და მთელ საქართველოში. ედიტორიალური, პორტრეტული, საქორწინო და საოჯახო გადაღება თანამედროვე ესთეტიკით." />
-    <meta name="twitter:image" content="images/hero-bg.webp" />
-
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            fontFamily: {
-               serif: ['"Playfair Display"', 'serif'],
-               sans: ['"Inter"', 'sans-serif'],
-            },
-          },
-        },
-      };
-    </script>
-
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Playfair+Display:wght@400;600;700&display=swap"
-      rel="stylesheet"
-    />
-  </head>
-  <body class="bg-[#0F0F11] text-gray-200 font-sans antialiased">
-    <header class="fixed top-0 left-0 w-full z-50 bg-[#0F0F11]/80 backdrop-blur-md border-b border-white/10">
-      <div class="max-w-7xl mx-auto px-4 md:px-8 h-20 flex items-center justify-between">
-        <a href="#" class="font-serif text-xl md:text-2xl font-bold tracking-widest text-white uppercase hover:opacity-80 transition-opacity">
-          ZUKA GULIEVI
-        </a>
-
-        <nav class="hidden md:flex items-center gap-8" aria-label="მთავარი ნავიგაცია">
-          <a class="text-sm text-gray-300 hover:text-white font-medium transition-colors duration-200" href="#portfolio">პორტფოლიო</a>
-          <a class="text-sm text-gray-300 hover:text-white font-medium transition-colors duration-200" href="#about">ჩემ შესახებ</a>
-          <a class="text-sm text-gray-300 hover:text-white font-medium transition-colors duration-200" href="#services">სერვისები</a>
-          <a class="text-sm text-gray-300 hover:text-white font-medium transition-colors duration-200" href="#contact">კონტაქტი</a>
-          <a href="#contact" class="bg-white text-black font-semibold text-sm px-5 py-2 rounded-full hover:bg-gray-200 transition-all duration-300 active:scale-95">
-            დაჯავშნა
-          </a>
-        </nav>
-
-        <button id="menuButton" class="inline-flex md:hidden h-11 w-11 items-center justify-center rounded-full border border-white/15 text-white transition hover:border-white/30 hover:bg-white/5" aria-expanded="false" aria-controls="mobileMenu" aria-label="მენიუს გახსნა" type="button">
-          <span class="sr-only">მენიუს გახსნა</span>
-          <svg id="menuIconOpen" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.7">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
-          </svg>
-          <svg id="menuIconClose" class="hidden h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.7">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M6 6l12 12M18 6L6 18" />
-          </svg>
-        </button>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f4f1ea">
+  <title>ZUKA GULIEVI — ფოტოგრაფი თბილისში</title>
+  <meta name="description" content="ზუკა გულიევი — პორტრეტები, ედიტორიალი და ოჯახური ისტორიები. ფოტოსესიები თბილისში და მთელ საქართველოში.">
+  <link rel="canonical" href="https://gulievi.me/">
+  <meta property="og:title" content="ZUKA GULIEVI — ფოტოგრაფი თბილისში">
+  <meta property="og:description" content="ადამიანები, სინათლე და ნამდვილი ემოციები. ფოტოგრაფია ზუკა გულიევისგან.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://gulievi.me/">
+  <meta property="og:image" content="https://gulievi.me/images/hero-bg.webp">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Noto+Sans+Georgian:wght@400;500;600&family=Noto+Serif+Georgian:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/site.css">
+  <script type="module" src="js/main.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">მთავარ შინაარსზე გადასვლა</a>
+  <header class="site-header wrap">
+    <a class="wordmark" href="#" aria-label="Zuka Gulievi — მთავარი">ZG<span> ZUKA GULIEVI<br><small>PHOTOGRAPHER</small></span></a>
+    <button class="menu-toggle" id="menu-toggle" type="button" aria-expanded="false" aria-controls="navigation">მენიუ <span aria-hidden="true">＋</span></button>
+    <nav id="navigation" aria-label="მთავარი ნავიგაცია">
+      <a href="#portfolio">ნამუშევრები</a><a href="#about">ჩემ შესახებ</a><a href="#services">სერვისები</a>
+      <a class="nav-contact" href="#contact">დამიკავშირდით <span aria-hidden="true">↗</span></a>
+    </nav>
+  </header>
+  <main id="main">
+    <section class="hero wrap" aria-labelledby="hero-title">
+      <div class="hero-top"><span class="eyebrow"><i class="status-dot" aria-hidden="true"></i> თბილისი, საქართველო</span><span class="eyebrow">პორტრეტი · ედიტორიალი · ცხოვრების სტილი</span></div>
+      <h1 id="hero-title" class="hero-name" lang="en">ZUKA <span>GULIEVI</span><sup>©</sup></h1>
+      <div class="hero-layout">
+        <div class="hero-copy"><p class="eyebrow">ფოტოგრაფია, რომელიც რჩება</p><h2>წამები მიდის.<br><em>ემოცია რჩება.</em></h2><p>ადამიანები, სინათლე და ნამდვილი ისტორიები. ვქმნი კადრებს, რომლებშიც საკუთარ თავს იპოვით.</p><a class="text-link" href="#portfolio">აღმოაჩინეთ ნამუშევრები <span aria-hidden="true">↘</span></a><span class="hero-note" lang="en">A feeling. A moment. A photograph.</span></div>
+        <figure class="hero-image"><img src="images/hero-bg.webp" srcset="images/optimized/hero-bg-480.webp 480w, images/optimized/hero-bg-960.webp 960w, images/hero-bg.webp 1365w" sizes="(max-width: 700px) 90vw, 45vw" alt="ედიტორიალური პორტრეტი ბუნებრივ, რბილ შუქში" width="1365" height="2048" fetchpriority="high"><figcaption><span>01 / რჩეული კადრი</span><span>ედიტორიალი, თბილისი</span></figcaption></figure>
+        <div class="hero-side" aria-hidden="true" lang="en">THE ART OF SEEING THE EVERYDAY</div>
       </div>
-
-      <div id="mobileMenu" class="hidden md:hidden border-t border-white/10 bg-[#0F0F11]/95 backdrop-blur-md">
-        <nav class="max-w-7xl mx-auto px-4 md:px-8 py-5 flex flex-col gap-4" aria-label="მობილური ნავიგაცია">
-          <a class="text-sm text-gray-300 hover:text-white font-medium transition-colors duration-200" href="#portfolio">პორტფოლიო</a>
-          <a class="text-sm text-gray-300 hover:text-white font-medium transition-colors duration-200" href="#about">ჩემ შესახებ</a>
-          <a class="text-sm text-gray-300 hover:text-white font-medium transition-colors duration-200" href="#services">სერვისები</a>
-          <a class="text-sm text-gray-300 hover:text-white font-medium transition-colors duration-200" href="#contact">კონტაქტი</a>
-          <a href="#contact" class="bg-white text-black font-semibold text-sm px-5 py-2 rounded-full hover:bg-gray-200 transition-all duration-300 active:scale-95 w-fit">
-            დაჯავშნა
-          </a>
-        </nav>
-      </div>
-    </header>
-
-    <main>
-      <section id="hero" class="relative min-h-screen overflow-hidden">
-        <div
-          class="absolute inset-0 bg-cover bg-center"
-          style="background-image: url('images/hero-bg.webp');"
-          aria-hidden="true"
-        ></div>
-        <div class="absolute inset-0 bg-black/60" aria-hidden="true"></div>
-
-        <div class="relative mx-auto flex min-h-screen max-w-7xl flex-col px-4 sm:px-6 lg:px-8">
-          <div class="flex-1"></div>
-
-          <div class="mx-auto flex w-full max-w-3xl flex-col items-center text-center">
-            <p class="mb-4 text-xs font-semibold uppercase tracking-[0.45em] text-gray-300/80 sm:text-sm">
-              ედიტორიალი &amp; პორტრეტული ფოტოგრაფია
-            </p>
-            <h1 class="font-serif text-5xl font-bold tracking-tight text-white sm:text-7xl lg:text-8xl">
-              ზუკა გულიევი
-            </h1>
-            <p class="mt-6 max-w-2xl text-sm leading-7 text-gray-200/90 sm:text-base lg:text-lg">
-              ელეგანტური პორტრეტები, ედიტორიალ გადაღებები და ვიზუალური ისტორიები სინათლისა და განწყობის აქცენტით.
-            </p>
-
-            <div class="mt-10 flex flex-col gap-4 sm:flex-row">
-              <a
-                href="#portfolio"
-                class="border border-white/20 text-white font-medium px-6 py-3 rounded-full hover:border-white hover:bg-white/10 backdrop-blur-sm transition-all duration-300 active:scale-95 cursor-pointer flex items-center justify-center gap-2"
-              >
-                გალერეის ნახვა
-              </a>
-              <a
-                href="#contact"
-                class="bg-white text-black font-medium px-6 py-3 rounded-full hover:bg-gray-200 transition-all duration-300 shadow-lg hover:shadow-white/10 active:scale-95 cursor-pointer flex items-center justify-center gap-2"
-              >
-                კონტაქტი
-              </a>
-            </div>
-          </div>
-
-          <div class="absolute bottom-6 left-1/2 z-10 -translate-x-1/2 flex items-center justify-center">
-            <a
-              href="#portfolio"
-              class="group inline-flex flex-col items-center gap-2 text-xs uppercase tracking-[0.35em] text-gray-300/70 transition hover:text-white"
-            >
-              <span class="animate-pulse text-lg leading-none">↓</span>
-              <span>ჩასქროლეთ</span>
-            </a>
-          </div>
-        </div>
-      </section>
-
-      <section id="portfolio" class="py-24 sm:py-28">
-        <div class="mx-auto max-w-3xl px-4 text-center sm:px-6 lg:px-8">
-          <h2 class="mt-5 font-serif text-4xl text-white sm:text-5xl">რჩეული ნამუშევრები</h2>
-          <p class="mt-4 text-sm leading-7 text-gray-300 sm:text-base">
-            ედიტორიალის, მოდის, პორტრეტებისა და ცხოვრების სტილის გადაღებების გამორჩეული კოლექცია.
-          </p>
-        </div>
-
-        <div class="inline-flex flex-wrap justify-center items-center gap-1.5 p-1.5 bg-[#18181C] border border-white/10 rounded-full shadow-2xl backdrop-blur-md w-fit mx-auto my-8" id="portfolioFilters">
-          <button type="button" class="filter-btn bg-white text-black font-semibold px-5 py-2 md:px-6 md:py-2.5 rounded-full shadow-md text-xs md:text-sm transition-all duration-300 active:scale-95 cursor-pointer" data-filter="all">
-            ყველა
-          </button>
-          <button type="button" class="filter-btn text-gray-400 hover:text-white hover:bg-white/10 px-5 py-2 md:px-6 md:py-2.5 rounded-full text-xs md:text-sm font-medium transition-all duration-300 active:scale-95 cursor-pointer" data-filter="editorial">
-            ედიტორიალი &amp; მოდა
-          </button>
-          <button type="button" class="filter-btn text-gray-400 hover:text-white hover:bg-white/10 px-5 py-2 md:px-6 md:py-2.5 rounded-full text-xs md:text-sm font-medium transition-all duration-300 active:scale-95 cursor-pointer" data-filter="portraits">
-            პორტრეტები
-          </button>
-          <button type="button" class="filter-btn text-gray-400 hover:text-white hover:bg-white/10 px-5 py-2 md:px-6 md:py-2.5 rounded-full text-xs md:text-sm font-medium transition-all duration-300 active:scale-95 cursor-pointer" data-filter="weddings">
-            ქორწილები &amp; წყვილები
-          </button>
-          <button type="button" class="filter-btn text-gray-400 hover:text-white hover:bg-white/10 px-5 py-2 md:px-6 md:py-2.5 rounded-full text-xs md:text-sm font-medium transition-all duration-300 active:scale-95 cursor-pointer" data-filter="family">
-            ოჯახი
-          </button>
-        </div>
-
-        <div class="mx-auto mt-12 grid max-w-7xl grid-cols-1 gap-6 px-4 sm:grid-cols-2 lg:grid-cols-3 sm:px-6 lg:px-8" id="portfolioGrid">
-          <a href="images/hero-bg.webp" class="portfolio-card group relative overflow-hidden rounded-3xl bg-white/5 transition-all duration-300" data-category="editorial" data-title="ედიტორიალური პორტრეტი" data-subtitle="მოდა / სტუდია" data-thumb="images/hero-bg.webp">
-            <img loading="lazy" alt="ედიტორიალური პორტრეტი" src="images/hero-bg.webp" class="w-full h-full object-cover rounded-2xl" />
-            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-80 transition duration-300 group-hover:bg-black/55"></div>
-            <div class="absolute inset-x-0 bottom-0 p-6">
-              <p class="text-xs uppercase tracking-[0.35em] text-gray-300/80">ედიტორიალი &amp; მოდა</p>
-              <h3 class="mt-2 font-serif text-2xl text-white">ედიტორიალური პორტრეტი</h3>
-            </div>
-          </a>
-
-          <a href="images/portfolio-4.webp" class="portfolio-card group relative overflow-hidden rounded-3xl bg-white/5 transition-all duration-300" data-category="portraits" data-title="პორტრეტი" data-subtitle="პორტრეტი / ბუნებრივი შუქი" data-thumb="images/portfolio-4.webp">
-            <img loading="lazy" alt="პორტრეტი" src="images/portfolio-4.webp" class="w-full h-full object-cover rounded-2xl" />
-            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-80 transition duration-300 group-hover:bg-black/55"></div>
-            <div class="absolute inset-x-0 bottom-0 p-6">
-              <p class="text-xs uppercase tracking-[0.35em] text-gray-300/80">პორტრეტები</p>
-              <h3 class="mt-2 font-serif text-2xl text-white">პორტრეტი</h3>
-            </div>
-          </a>
-
-          <a href="images/portfolio-1.webp" class="portfolio-card group relative overflow-hidden rounded-3xl bg-white/5 transition-all duration-300" data-category="family" data-title="ოჯახური მომენტები" data-subtitle="ოჯახი / ცხოვრების სტილი" data-thumb="images/portfolio-1.webp">
-            <img loading="lazy" alt="ოჯახური მომენტები" src="images/portfolio-1.webp" class="w-full h-full object-cover rounded-2xl" />
-            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-80 transition duration-300 group-hover:bg-black/55"></div>
-            <div class="absolute inset-x-0 bottom-0 p-6">
-              <p class="text-xs uppercase tracking-[0.35em] text-gray-300/80">ოჯახი</p>
-              <h3 class="mt-2 font-serif text-2xl text-white">ოჯახური მომენტები</h3>
-            </div>
-          </a>
-
-          <a href="images/portfolio-2.webp" class="portfolio-card group relative overflow-hidden rounded-3xl bg-white/5 transition-all duration-300" data-category="family" data-title="ოჯახური მომენტები" data-subtitle="ოჯახი / ცხოვრების სტილი" data-thumb="images/portfolio-2.webp">
-            <img loading="lazy" alt="ოჯახური მომენტები" src="images/portfolio-2.webp" class="w-full h-full object-cover rounded-2xl" />
-            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-80 transition duration-300 group-hover:bg-black/55"></div>
-            <div class="absolute inset-x-0 bottom-0 p-6">
-              <p class="text-xs uppercase tracking-[0.35em] text-gray-300/80">ოჯახი</p>
-              <h3 class="mt-2 font-serif text-2xl text-white">ოჯახური მომენტები</h3>
-            </div>
-          </a>
-
-          <a href="images/portfolio-3.webp" class="portfolio-card group relative overflow-hidden rounded-3xl bg-white/5 transition-all duration-300" data-category="family" data-title="ოჯახური მომენტები" data-subtitle="ოჯახი / ცხოვრების სტილი" data-thumb="images/portfolio-3.webp">
-            <img loading="lazy" alt="ოჯახური მომენტები" src="images/portfolio-3.webp" class="w-full h-full object-cover rounded-2xl" />
-            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-80 transition duration-300 group-hover:bg-black/55"></div>
-            <div class="absolute inset-x-0 bottom-0 p-6">
-              <p class="text-xs uppercase tracking-[0.35em] text-gray-300/80">ოჯახი</p>
-              <h3 class="mt-2 font-serif text-2xl text-white">ოჯახური მომენტები</h3>
-            </div>
-          </a>
-
-          <a href="images/portfolio-4.webp" class="portfolio-card group relative overflow-hidden rounded-3xl bg-white/5 transition-all duration-300" data-category="portraits" data-title="მშვიდი მზერა" data-subtitle="პორტრეტი / მინიმალიზმი" data-thumb="images/portfolio-4.webp">
-            <img loading="lazy" alt="მშვიდი მზერა" src="images/portfolio-4.webp" class="w-full h-full object-cover rounded-2xl" />
-            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-80 transition duration-300 group-hover:bg-black/55"></div>
-            <div class="absolute inset-x-0 bottom-0 p-6">
-              <p class="text-xs uppercase tracking-[0.35em] text-gray-300/80">პორტრეტები</p>
-              <h3 class="mt-2 font-serif text-2xl text-white">მშვიდი მზერა</h3>
-            </div>
-          </a>
-
-          <a href="images/portfolio-5.webp" class="portfolio-card group relative overflow-hidden rounded-3xl bg-white/5 transition-all duration-300" data-category="family" data-title="ოჯახური მომენტები" data-subtitle="ოჯახი / ცხოვრების სტილი" data-thumb="images/portfolio-5.webp">
-            <img loading="lazy" alt="ოჯახური მომენტები" src="images/portfolio-5.webp" class="w-full h-full object-cover rounded-2xl" />
-            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-80 transition duration-300 group-hover:bg-black/55"></div>
-            <div class="absolute inset-x-0 bottom-0 p-6">
-              <p class="text-xs uppercase tracking-[0.35em] text-gray-300/80">ოჯახი</p>
-              <h3 class="mt-2 font-serif text-2xl text-white">ოჯახური მომენტები</h3>
-            </div>
-          </a>
-        </div>
-      </section>
-
-      <section id="about" class="grid grid-cols-1 gap-12 max-w-7xl mx-auto px-4 py-20 md:grid-cols-2 sm:px-6 lg:px-8">
-          <div class="relative overflow-hidden rounded-[2rem] border border-white/10 bg-white/5">
-            <img loading="lazy"
-              src="images/about.webp"
-              alt="ფოტოგრაფის პორტრეტი"
-              class="h-full min-h-[680px] w-full object-cover object-center"
-            />
-            <div class="absolute inset-0 bg-black/35"></div>
-          </div>
-          <div class="flex flex-col justify-center">
-            <p class="text-sm uppercase tracking-[0.35em] text-gray-400">ჩემ შესახებ</p>
-            <h2 class="mt-4 font-serif text-3xl text-white md:text-4xl">კადრს მიღმა</h2>
-            <p class="mt-6 max-w-2xl text-sm leading-8 text-gray-300 sm:text-base">
-              ვმუშაობ ატმოსფეროზე, ბუნებრივ ემოციებზე და კადრში იმ შუქზე, რომელიც ამბავს უფრო სიღრმეს აძლევს. მიყვარს
-              როგორც ჟურნალის ესთეტიკა, ისე სტუდიური სიზუსტე, რადგან ორივე მიმართულება მეხმარება შევქმნა ცოცხალი და დახვეწილი ვიზუალური ისტორია.
-            </p>
-            <div class="mt-8 grid gap-4 sm:grid-cols-2">
-              <div class="rounded-2xl border border-white/10 bg-[#18181C] p-5">
-                <div class="font-serif text-3xl text-white">8+</div>
-                <div class="mt-2 text-sm text-gray-300">წლიანი გამოცდილება</div>
-              </div>
-              <div class="rounded-2xl border border-white/10 bg-[#18181C] p-5">
-                <div class="font-serif text-3xl text-white">500+</div>
-                <div class="mt-2 text-sm text-gray-300">გადაღება</div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-      <section id="services" class="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
-          <div class="mx-auto max-w-3xl text-center">
-            <p class="text-sm uppercase tracking-[0.35em] text-gray-400">სერვისები</p>
-            <h2 class="mt-4 font-serif text-3xl text-white md:text-4xl">სერვისები და ფასები</h2>
-          </div>
-
-          <div class="mt-12 grid gap-6 sm:grid-cols-2 xl:grid-cols-4">
-            <article class="group flex h-full flex-col rounded-[1.75rem] border border-gray-800 bg-[#18181C] p-6 transition duration-300 hover:-translate-y-2 hover:border-white/20 hover:shadow-2xl hover:shadow-black/30">
-              <h3 class="font-serif text-2xl text-white">ედიტორიალი &amp; მოდა</h3>
-              <ul class="mt-5 space-y-3 text-sm text-gray-300">
-                <li class="flex items-start gap-3"><span class="text-white">✓</span><span>კონცეფციის დაგეგმვა</span></li>
-                <li class="flex items-start gap-3"><span class="text-white">✓</span><span>ჟურნალური და სტუდიური შუქი</span></li>
-                <li class="flex items-start gap-3"><span class="text-white">✓</span><span>რეტუში და ფერადი დამუშავება</span></li>
-              </ul>
-              <div class="mt-6 text-sm uppercase tracking-[0.25em] text-gray-400">ფასი იწყება</div>
-              <div class="mt-2 font-serif text-3xl text-white">₾450</div>
-              <a href="#contact" class="w-full py-3 px-4 rounded-xl border border-gray-800 text-gray-300 hover:text-black hover:bg-white hover:border-white font-medium text-sm transition-all duration-300 active:scale-98 text-center block">დაჯავშნა</a>
-            </article>
-
-            <article class="group flex h-full flex-col rounded-[1.75rem] border border-gray-800 bg-[#18181C] p-6 transition duration-300 hover:-translate-y-2 hover:border-white/20 hover:shadow-2xl hover:shadow-black/30">
-              <h3 class="font-serif text-2xl text-white">ინდივიდუალური პორტრეტი</h3>
-              <ul class="mt-5 space-y-3 text-sm text-gray-300">
-                <li class="flex items-start gap-3"><span class="text-white">✓</span><span>პოზირების მხარდაჭერა</span></li>
-                <li class="flex items-start gap-3"><span class="text-white">✓</span><span>ლოკაციის შერჩევა</span></li>
-                <li class="flex items-start gap-3"><span class="text-white">✓</span><span>10 დამუშავებული ფოტო</span></li>
-              </ul>
-              <div class="mt-6 text-sm uppercase tracking-[0.25em] text-gray-400">ფასი იწყება</div>
-              <div class="mt-2 font-serif text-3xl text-white">₾220</div>
-              <a href="#contact" class="w-full py-3 px-4 rounded-xl border border-gray-800 text-gray-300 hover:text-black hover:bg-white hover:border-white font-medium text-sm transition-all duration-300 active:scale-98 text-center block">დაჯავშნა</a>
-            </article>
-
-            <article class="group flex h-full flex-col rounded-[1.75rem] border border-gray-800 bg-[#18181C] p-6 transition duration-300 hover:-translate-y-2 hover:border-white/20 hover:shadow-2xl hover:shadow-black/30">
-              <h3 class="font-serif text-2xl text-white">საქორწინო გადაღება</h3>
-              <ul class="mt-5 space-y-3 text-sm text-gray-300">
-                <li class="flex items-start gap-3"><span class="text-white">✓</span><span>სრული დღის გაშუქება</span></li>
-                <li class="flex items-start gap-3"><span class="text-white">✓</span><span>ემოციური რეპორტაჟი</span></li>
-                <li class="flex items-start gap-3"><span class="text-white">✓</span><span>ონლაინ გალერეა</span></li>
-              </ul>
-              <div class="mt-6 text-sm uppercase tracking-[0.25em] text-gray-400">ფასი იწყება</div>
-              <div class="mt-2 font-serif text-3xl text-white">₾700</div>
-              <a href="#contact" class="w-full py-3 px-4 rounded-xl border border-gray-800 text-gray-300 hover:text-black hover:bg-white hover:border-white font-medium text-sm transition-all duration-300 active:scale-98 text-center block">დაჯავშნა</a>
-            </article>
-
-            <article class="group flex h-full flex-col rounded-[1.75rem] border border-gray-800 bg-[#18181C] p-6 transition duration-300 hover:-translate-y-2 hover:border-white/20 hover:shadow-2xl hover:shadow-black/30">
-              <h3 class="font-serif text-2xl text-white">საოჯახო ფოტოსესია</h3>
-              <ul class="mt-5 space-y-3 text-sm text-gray-300">
-                <li class="flex items-start gap-3"><span class="text-white">✓</span><span>ბუნებრივი ემოციები</span></li>
-                <li class="flex items-start gap-3"><span class="text-white">✓</span><span>ბავშვებთან მუშაობა</span></li>
-                <li class="flex items-start gap-3"><span class="text-white">✓</span><span>15 დამუშავებული ფოტო</span></li>
-              </ul>
-              <div class="mt-6 text-sm uppercase tracking-[0.25em] text-gray-400">ფასი იწყება</div>
-              <div class="mt-2 font-serif text-3xl text-white">₾280</div>
-              <a href="#contact" class="w-full py-3 px-4 rounded-xl border border-gray-800 text-gray-300 hover:text-black hover:bg-white hover:border-white font-medium text-sm transition-all duration-300 active:scale-98 text-center block">დაჯავშნა</a>
-            </article>
-          </div>
-        </section>
-
-      <section id="contact" class="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
-          <div class="grid grid-cols-1 gap-12 md:grid-cols-2">
-            <div>
-              <p class="text-xs uppercase tracking-[0.35em] text-gray-400">დაკავშირება</p>
-              <h2 class="mt-4 font-serif text-3xl text-white md:text-4xl">დაკავშირება</h2>
-
-              <div class="mt-8 space-y-4 text-gray-300">
-                <div class="rounded-2xl border border-white/10 bg-white/5 p-5">
-                  <div class="text-sm uppercase tracking-[0.25em] text-gray-400">ლოკაცია</div>
-                  <div class="mt-2 text-base">თბილისი, საქართველო</div>
-                </div>
-                <div class="rounded-2xl border border-white/10 bg-white/5 p-5">
-                  <div class="text-sm uppercase tracking-[0.25em] text-gray-400">ინსტაგრამი</div>
-                  <div class="mt-2 flex items-center justify-between gap-3">
-                    <a class="block text-base text-white transition hover:text-gray-300" href="https://instagram.com/photographer_zuka_gulievi" target="_blank" rel="noreferrer" data-copy-label="instagram" data-copy-value="@photographer_zuka_gulievi">
-                      @photographer_zuka_gulievi
-                    </a>
-                    <button type="button" class="copy-contact-btn inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/5 text-gray-200 transition hover:border-white/20 hover:bg-white/10 hover:text-white" data-copy-value="@photographer_zuka_gulievi" data-copy-label="ინსტაგრამი" aria-label="ინსტაგრამის კოპირება">
-                      <svg viewBox="0 0 24 24" fill="none" class="h-4 w-4" stroke="currentColor" stroke-width="1.8">
-                        <path d="M8 8h10v10H8z"></path>
-                        <path d="M6 16H5a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v1"></path>
-                      </svg>
-                    </button>
-                  </div>
-                </div>
-                <div class="rounded-2xl border border-white/10 bg-white/5 p-5">
-                  <div class="text-sm uppercase tracking-[0.25em] text-gray-400">ტელეფონი / ვოთსაფი</div>
-                  <div class="mt-2 flex items-center justify-between gap-3">
-                    <a class="block text-base text-white transition hover:text-gray-300" href="tel:+995500000000" data-copy-label="ტელეფონი" data-copy-value="+995 500 00 00 00">
-                      +995 500 00 00 00
-                    </a>
-                    <button type="button" class="copy-contact-btn inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/5 text-gray-200 transition hover:border-white/20 hover:bg-white/10 hover:text-white" data-copy-value="+995 500 00 00 00" data-copy-label="ტელეფონი" aria-label="ტელეფონის კოპირება">
-                      <svg viewBox="0 0 24 24" fill="none" class="h-4 w-4" stroke="currentColor" stroke-width="1.8">
-                        <path d="M8 8h10v10H8z"></path>
-                        <path d="M6 16H5a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v1"></path>
-                      </svg>
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <form id="contact-form" class="rounded-[2rem] border border-white/10 bg-[#18181C] p-6 sm:p-8">
-              <div class="grid gap-4">
-                <input name="name" type="text" placeholder="სახელი" class="w-full rounded-2xl border border-white/10 bg-[#0F0F11] px-5 py-4 text-white outline-none transition placeholder:text-gray-500 focus:border-white/30" />
-                <input name="phone" type="text" placeholder="ტელეფონი / ტელეგრამი" class="w-full rounded-2xl border border-white/10 bg-[#0F0F11] px-5 py-4 text-white outline-none transition placeholder:text-gray-500 focus:border-white/30" />
-                <select name="type" class="w-full rounded-2xl border border-white/10 bg-[#0F0F11] px-5 py-4 text-white outline-none transition focus:border-white/30">
-                  <option selected>გადაღების ტიპი</option>
-                  <option>ედიტორიალი &amp; მოდა</option>
-                  <option>ინდივიდუალური პორტრეტი</option>
-                  <option>საქორწინო გადაღება</option>
-                  <option>საოჯახო ფოტოსესია</option>
-                </select>
-                <input name="date" type="text" placeholder="სასურველი თარიღი" class="w-full rounded-2xl border border-white/10 bg-[#0F0F11] px-5 py-4 text-white outline-none transition placeholder:text-gray-500 focus:border-white/30" />
-                <textarea name="message" rows="5" placeholder="შეტყობინება" class="w-full rounded-2xl border border-white/10 bg-[#0F0F11] px-5 py-4 text-white outline-none transition placeholder:text-gray-500 focus:border-white/30"></textarea>
-                <button id="contact-submit" type="submit" class="bg-white text-black font-medium px-6 py-3 rounded-full hover:bg-gray-200 transition-all duration-300 shadow-lg hover:shadow-white/10 active:scale-95 cursor-pointer flex items-center justify-center gap-2">განაცხადის გაგზავნა</button>
-              </div>
-            </form>
-          </div>
-        </section>
-
-        <footer class="border-t border-white/10 px-4 py-8 sm:px-6 lg:px-8">
-          <div class="mx-auto flex max-w-7xl flex-col gap-6 md:flex-row md:items-center md:justify-between">
-            <p class="text-sm text-gray-400">© 2026 ZUKA GULIEVI. ყველა უფლება დაცულია.</p>
-            <div class="flex flex-wrap items-center gap-5 text-sm text-gray-300">
-              <a href="https://instagram.com/photographer_zuka_gulievi" target="_blank" rel="noreferrer" class="transition hover:text-white">ინსტაგრამი</a>
-              <a href="https://www.facebook.com" target="_blank" rel="noreferrer" class="transition hover:text-white">ფეისბუქი</a>
-              <a href="#hero" class="transition hover:text-white">ზემოთ</a>
-            </div>
-          </div>
-        </footer>
-    </main>
-
-      <button type="button" class="js-fab fixed bottom-6 right-6 z-50 inline-flex h-14 w-14 items-center justify-center rounded-full bg-white text-black shadow-2xl shadow-black/40 transition hover:scale-105 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-white/50" aria-label="მესინჯერის არჩევა" aria-expanded="false" aria-controls="messengerMenu">
-        <svg viewBox="0 0 24 24" fill="none" class="h-6 w-6" stroke="currentColor" stroke-width="1.8">
-          <path d="M21 11.5a8.5 8.5 0 0 1-12.6 7.4L3 21l2.1-5.3A8.5 8.5 0 1 1 21 11.5Z" />
-          <path d="M8 10h8M8 13h5" />
-        </svg>
-      </button>
-
-      <div id="messengerMenu" class="fixed bottom-24 right-6 z-50 hidden min-w-56 rounded-3xl border border-white/10 bg-[#18181C]/95 p-3 text-sm text-white shadow-2xl backdrop-blur-xl">
-        <a href="https://wa.me/995500000000" target="_blank" rel="noreferrer" class="flex items-center justify-between rounded-2xl px-4 py-3 transition hover:bg-white/10">
-          <span>ვოთსაფი</span>
-          <span class="text-gray-400">↗</span>
-        </a>
-        <a href="https://t.me/photographer_zuka_gulievi" target="_blank" rel="noreferrer" class="mt-1 flex items-center justify-between rounded-2xl px-4 py-3 transition hover:bg-white/10">
-          <span>ტელეგრამი</span>
-          <span class="text-gray-400">↗</span>
-        </a>
-        <a href="#contact" class="mt-1 flex items-center justify-between rounded-2xl px-4 py-3 transition hover:bg-white/10">
-          <span>ფორმაზე გადასვლა</span>
-          <span class="text-gray-400">↓</span>
-        </a>
-      </div>
-
-      <div id="copyToast" class="pointer-events-none fixed bottom-6 left-1/2 z-[70] hidden -translate-x-1/2 translate-y-3 rounded-full border border-white/10 bg-white px-5 py-3 text-sm font-semibold text-black opacity-0 shadow-2xl transition-all duration-300 ease-out">
-        დაკოპირებულია!
-      </div>
-
-      <script src="js/gallery.js" defer></script>
-      <script src="js/main.js" defer></script>
-  </body>
+    </section>
+    <section id="portfolio" class="portfolio wrap section-space" aria-labelledby="portfolio-title">
+      <div class="section-heading"><div><p class="eyebrow">01 — პორტფოლიო</p><h2 id="portfolio-title">რჩეული <em>ნამუშევრები</em></h2></div><p class="section-intro">სხვადასხვა ისტორია.<br>ერთი გულწრფელი ხედვა.</p></div>
+      <div class="filter-bar"><div id="filters" class="filters" role="group" aria-label="ფოტოების კატეგორია"><button type="button" data-filter="all" aria-pressed="true">ყველა</button><button type="button" data-filter="editorial" aria-pressed="false">ედიტორიალი</button><button type="button" data-filter="portraits" aria-pressed="false">პორტრეტები</button><button type="button" data-filter="family" aria-pressed="false">ოჯახი</button><button type="button" data-filter="weddings" aria-pressed="false">ქორწილები</button></div><span id="photo-count" class="eyebrow" aria-live="polite"></span></div>
+      <p id="gallery-status" role="status">ფოტოები იტვირთება…</p><button id="gallery-retry" class="button secondary" type="button" hidden>ხელახლა ცდა</button>
+      <div id="gallery" class="gallery"></div>
+      <noscript><p>გალერეისთვის ჩართეთ JavaScript. ფოტოების სანახავად ეწვიეთ <a href="https://instagram.com/photographer_zuka_gulievi">ინსტაგრამს</a>.</p></noscript>
+      <div class="portfolio-end"><span class="eyebrow" lang="en">EVERY FRAME, A LITTLE STORY.</span><a class="text-link" href="https://instagram.com/photographer_zuka_gulievi" target="_blank" rel="noopener noreferrer">მეტი ინსტაგრამზე <span aria-hidden="true">↗</span></a></div>
+    </section>
+    <section id="about" class="about section-space" aria-labelledby="about-title"><div class="wrap about-layout"><figure><img src="images/about.webp" alt="ზუკა გულიევი, ფოტოგრაფი" loading="lazy"><figcaption class="eyebrow">კადრის მიღმა — ზუკა გულიევი</figcaption></figure><div class="about-copy"><p class="eyebrow">02 — ჩემ შესახებ</p><h2 id="about-title">კარგი ფოტო<br>იწყება <em>ნდობით.</em></h2><p>მე ზუკა ვარ, ფოტოგრაფი თბილისიდან. ჩემთვის ფოტოგრაფია მხოლოდ ლამაზი კადრი არ არის — ეს არის ადამიანის, მისი ხასიათისა და ემოციის დანახვა.</p><p>გადაღებაზე არ გჭირდებათ იყოთ მოდელი. ერთად ვიპოვით თქვენს რიტმს, სინათლეს და იმ მომენტს, რომელიც ნამდვილად თქვენია.</p><a class="text-link" href="#contact">მოდით, გავიცნოთ ერთმანეთი <span aria-hidden="true">↗</span></a><span class="signature" lang="en">Zuka.</span></div></div></section>
+    <section id="services" class="wrap section-space" aria-labelledby="services-title"><div class="section-heading"><div><p class="eyebrow">03 — ერთად შევქმნათ</p><h2 id="services-title">თქვენი <em>ისტორია</em></h2></div><p class="section-intro">იდეიდან ბოლო კადრამდე —<br>ყურადღებით, თქვენზე მორგებული.</p></div>
+      <a class="service-row" href="#contact"><span class="eyebrow">01</span><h3>პორტრეტები</h3><p>თქვენი ხასიათი. თქვენი ბუნებრივი სილამაზე.</p><span class="service-price">₾220-დან <b aria-hidden="true">↗</b></span></a>
+      <a class="service-row" href="#contact"><span class="eyebrow">02</span><h3>ედიტორიალი &amp; მოდა</h3><p>იდეა, სტილი და გამორჩეული ვიზუალური ენა.</p><span class="service-price">₾450-დან <b aria-hidden="true">↗</b></span></a>
+      <a class="service-row" href="#contact"><span class="eyebrow">03</span><h3>ოჯახური ისტორიები</h3><p>ჩახუტება, სიცილი და თქვენი ერთად ყოფნა.</p><span class="service-price">მომწერეთ <b aria-hidden="true">↗</b></span></a>
+      <a class="service-row" href="#contact"><span class="eyebrow">04</span><h3>ქორწილები &amp; წყვილები</h3><p>დიდი დღე და პატარა, ნამდვილი მომენტები.</p><span class="service-price">მომწერეთ <b aria-hidden="true">↗</b></span></a>
+    </section>
+    <section id="contact" class="contact section-space" aria-labelledby="contact-title"><div class="wrap contact-layout"><div><p class="eyebrow">04 — შემდეგი ისტორია თქვენია</p><h2 id="contact-title">შევქმნათ<br>რაღაც <em>ნამდვილი.</em></h2><p>მომიყევით თქვენს იდეაზე.<br>დანარჩენს ერთად დავგეგმავთ.</p><a class="text-link" href="https://instagram.com/photographer_zuka_gulievi" target="_blank" rel="noopener noreferrer">ინსტაგრამზე მომწერეთ <span aria-hidden="true">↗</span></a><p class="eyebrow contact-location">თბილისი · გადაღებები მთელ საქართველოში</p></div>
+      <form id="contact-form"><div class="form-heading"><span class="eyebrow">მოთხოვნა ფოტოსესიაზე</span><span aria-hidden="true">↗</span></div><label>თქვენი სახელი<input name="name" autocomplete="name" required maxlength="100"></label><label>ელფოსტა ან ტელეფონი<input name="contact" autocomplete="email" required maxlength="160"></label><div class="form-pair"><label>გადაღების ტიპი<select name="category"><option value="portraits">პორტრეტი</option><option value="editorial">ედიტორიალი</option><option value="family">ოჯახი</option><option value="weddings">ქორწილი</option></select></label><label>სასურველი თარიღი<input name="date" type="date"></label></div><label>თქვენი იდეა<textarea name="message" rows="3" maxlength="2000"></textarea></label><div class="honeypot" aria-hidden="true"><label>Website<input name="website" tabindex="-1" autocomplete="off"></label></div><p class="form-note">გაგზავნით ეთანხმებით თქვენი მონაცემების გამოყენებას მხოლოდ ამ მოთხოვნაზე პასუხის გასაცემად.</p><button class="button" id="contact-submit" type="submit" disabled>მოთხოვნის გაგზავნა <span aria-hidden="true">↗</span></button><p id="contact-status" class="form-note" role="status">ფორმის დაკავშირებამდე მომწერეთ ინსტაგრამზე.</p></form>
+    </div></section>
+  </main>
+  <footer class="wrap site-footer"><a class="footer-name" href="#" lang="en">ZUKA GULIEVI</a><div><span>© <span id="year">2026</span> · ყველა უფლება დაცულია</span><a href="admin/">ადმინისტრირება</a><a href="#">ზემოთ ↑</a></div></footer>
+  <dialog id="lightbox" class="lightbox" aria-label="ფოტოს ნახვა"><button id="lightbox-close" class="lightbox-close" type="button" aria-label="დახურვა">დახურვა ×</button><button id="lightbox-prev" class="lightbox-prev" type="button" aria-label="წინა ფოტო">←</button><figure><img id="lightbox-image" alt=""><figcaption id="lightbox-caption" aria-live="polite"></figcaption></figure><button id="lightbox-next" class="lightbox-next" type="button" aria-label="შემდეგი ფოტო">→</button></dialog>
+</body>
 </html>
