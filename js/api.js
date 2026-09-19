@@ -85,6 +85,15 @@ export async function logout() {
   finally { saveSession(null); }
 }
 
+export async function changePassword(currentPassword, password) {
+  if (password.length < 12) throw new Error('Новый пароль должен содержать не менее 12 символов.');
+  if (password === currentPassword) throw new Error('Новый пароль должен отличаться от текущего.');
+  const user = await adminRequest('/auth/v1/user');
+  // Reauthenticate before changing credentials; never store the password.
+  await login(user.email, currentPassword);
+  await adminRequest('/auth/v1/user', { method: 'PUT', body: { password, current_password: currentPassword } });
+}
+
 export async function listPhotos(admin = false) {
   const result = [];
   for (let offset = 0; ; offset += 500) {

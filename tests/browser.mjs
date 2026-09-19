@@ -92,6 +92,14 @@ try {
   await waitFor('Array.from(document.images).every(img => !img.getAttribute("src") || (img.complete && img.naturalWidth > 0))');
   assert.equal(await evaluate('document.documentElement.scrollWidth <= innerWidth'), true, 'desktop overflow');
   await screenshot('desktop.png');
+  const galleryGeometry = await evaluate(`Array.from(document.querySelectorAll('.photo-frame')).map(el => { const r=el.getBoundingClientRect(); return {top:r.top,height:r.height,width:r.width}; })`);
+  for (let i = 1; i < 3; i++) assert.ok(Math.abs(galleryGeometry[i].top - galleryGeometry[0].top) < 1, 'desktop photos aligned');
+  for (const frame of galleryGeometry) assert.ok(Math.abs(frame.height / frame.width - 1.25) < .01, 'consistent photo format');
+  await evaluate('document.querySelector("#portfolio").scrollIntoView({behavior:"instant"})');
+  await screenshot('portfolio-desktop.png');
+  await evaluate('document.querySelector("#about").scrollIntoView({behavior:"instant"})');
+  await screenshot('about-desktop.png');
+  await evaluate('scrollTo({top:0,behavior:"instant"})');
   await evaluate('document.querySelector("[data-filter=family]").click()');
   assert.equal(await evaluate('document.querySelectorAll(".photo-card").length'), 4);
   await evaluate('document.querySelector("[data-filter=weddings]").click()');
@@ -111,6 +119,11 @@ try {
     assert.equal(await evaluate('document.documentElement.scrollWidth <= innerWidth'), true, `overflow at ${width}`);
     if (width === 390) {
       await screenshot('mobile.png');
+      assert.equal(await evaluate('getComputedStyle(document.querySelector("#gallery")).gridTemplateColumns.split(" ").length'), 2);
+      assert.ok(await evaluate('Math.abs(document.querySelectorAll(".photo-frame")[0].getBoundingClientRect().top-document.querySelectorAll(".photo-frame")[1].getBoundingClientRect().top)<1'));
+      await evaluate('document.querySelector("#portfolio").scrollIntoView({behavior:"instant"})');
+      await screenshot('portfolio-mobile.png');
+      await evaluate('scrollTo({top:0,behavior:"instant"})');
       await evaluate('document.querySelector("#menu-toggle").click()');
       assert.equal(await evaluate('document.querySelector("#menu-toggle").getAttribute("aria-expanded")'), 'true');
       await evaluate('document.querySelector("#navigation a").click()');
@@ -140,12 +153,15 @@ try {
     const url = new URL(request.url);
     if (url.pathname === '/js/config.js') return fulfill(requestId, 'export const config = { supabaseUrl: "https://test.supabase.co", supabaseKey: "sb_publishable_test", contactEnabled: true };', 200, 'text/javascript');
     if (url.hostname !== 'test.supabase.co') return command('Fetch.continueRequest', { requestId });
-    if (request.method === 'OPTIONS') return command('Fetch.fulfillRequest', { requestId, responseCode: 204, responseHeaders: [...responseHeaders, { name: 'Access-Control-Allow-Headers', value: '*' }, { name: 'Access-Control-Allow-Methods', value: 'GET,POST,PATCH,DELETE,OPTIONS' }] });
+    if (request.method === 'OPTIONS') return command('Fetch.fulfillRequest', { requestId, responseCode: 204, responseHeaders: [...responseHeaders, { name: 'Access-Control-Allow-Headers', value: '*' }, { name: 'Access-Control-Allow-Methods', value: 'GET,POST,PUT,PATCH,DELETE,OPTIONS' }] });
     if (url.pathname === '/auth/v1/token') {
       if (url.searchParams.get('grant_type') === 'refresh_token') refreshRequests++;
       return fulfill(requestId, { access_token: 'test-token', refresh_token: 'test-refresh', expires_in: 3600 });
     }
-    if (url.pathname === '/auth/v1/user') return fulfill(requestId, { id: userId });
+    if (url.pathname === '/auth/v1/user') {
+      if (request.method === 'PUT') assert.equal(JSON.parse(request.postData).password, 'new-test-password-2026');
+      return fulfill(requestId, { id: userId, email: 'owner@example.com' });
+    }
     if (url.pathname === '/auth/v1/logout') return fulfill(requestId, {});
     if (url.pathname.endsWith('/is_portfolio_admin')) return fulfill(requestId, owner);
     if (url.pathname === '/rest/v1/photos') {
@@ -174,6 +190,16 @@ try {
   owner = true; await submitLogin();
   await waitFor('document.querySelectorAll("#photo-library .editor-card").length === 6');
   await screenshot('admin.png');
+  await evaluate(`document.querySelector('.account-settings').open=true;
+    document.querySelector('[name=current_password]').value='test-password';
+    document.querySelector('[name=new_password]').value='new-test-password-2026';
+    document.querySelector('[name=confirm_password]').value='not-matching-password';
+    document.querySelector('#password-form').requestSubmit()`);
+  await waitFor('document.querySelector("#password-status").textContent.includes("не совпадают")');
+  await evaluate(`document.querySelector('[name=confirm_password]').value='new-test-password-2026'; document.querySelector('#password-form').requestSubmit()`);
+  await waitFor('document.querySelector("#password-status").textContent.includes("Пароль изменён")');
+  assert.equal(await evaluate('document.querySelector("[name=new_password]").value'), '');
+  console.log('PASS password change form, mismatch and cleared fields');
   await evaluate('const s=JSON.parse(sessionStorage.getItem("zuka-admin-session")); s.expires_at=1; sessionStorage.setItem("zuka-admin-session", JSON.stringify(s))');
   await go('admin/');
   await waitFor('document.querySelectorAll("#photo-library .editor-card").length === 6');

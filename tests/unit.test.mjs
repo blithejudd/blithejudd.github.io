@@ -85,3 +85,14 @@ test('RLS restricts admin list, writes and contact RPC', async () => {
   assert.match(sql, /revoke all on function public\.consume_contact_quota\(text\) from public, anon, authenticated/i);
   assert.match(sql, /file_size_limit/);
 });
+test('portfolio has a local signature font, biography and no staggered gallery rules', async () => {
+  const css = await readFile(new URL('css/site.css', root), 'utf8');
+  const html = await readFile(new URL('index.html', root), 'utf8');
+  const font = await readFile(new URL('fonts/allura.ttf', root));
+  assert.equal(font.readUInt32BE(0), 0x00010000, 'valid TrueType font');
+  await access(new URL('fonts/OFL-Allura.txt', root));
+  assert.doesNotMatch(css, /\.photo-card:nth-child/);
+  assert.match(css, /repeat\(3, minmax\(0, 1fr\)\)/);
+  assert.match(html, /class="autograph signature" lang="en">Zuka Gulievi/);
+  assert.match(html, /class="about-facts"/);
+});

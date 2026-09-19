@@ -16,6 +16,11 @@
     <p id="admin-status" class="admin-status" role="status" aria-live="polite"></p>
     <section id="workspace" hidden>
       <div class="admin-heading"><div><p class="eyebrow">ВАШЕ ПОРТФОЛИО</p><h1>Мастерская</h1></div><button id="logout" type="button" class="button secondary">Выйти</button></div>
+      <details class="account-settings"><summary>Настройки входа — сменить пароль</summary>
+        <p>После первого входа замените временный пароль своим. Временный email — только логин, не почтовый ящик. Для привязки настоящей почты используйте Authentication → Users в Supabase; восстановление писем на временный адрес недоступно.</p>
+        <form id="password-form"><label>Текущий пароль<input name="current_password" type="password" autocomplete="current-password" required></label><label>Новый пароль · не менее 12 символов<input name="new_password" type="password" autocomplete="new-password" minlength="12" required></label><label>Повторите новый пароль<input name="confirm_password" type="password" autocomplete="new-password" minlength="12" required></label><button class="button" type="submit">Сменить пароль</button></form>
+        <p id="password-status" role="status" aria-live="polite"></p>
+      </details>
       <div class="admin-tabs" role="group" aria-label="Раздел панели"><button type="button" id="tab-photos" aria-pressed="true">Фотографии <span id="admin-count"></span></button><button type="button" id="tab-upload" aria-pressed="false">＋ Добавить фото</button></div>
       <section id="upload-panel" hidden>
         <h2>Новая история</h2><p>JPG, PNG или WebP · до 20 МБ на исходный файл · до 12 фото за раз.<br>Фото будут уменьшены до 2400 px и преобразованы в WebP без EXIF-метаданных.</p>

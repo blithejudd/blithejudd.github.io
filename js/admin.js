@@ -1,4 +1,4 @@
-import { configured, login, logout, restoreSession, listPhotos, photoUrl, savePhoto, uploadImage, removeImage, deletePhoto } from './api.js';
+import { configured, login, logout, restoreSession, listPhotos, photoUrl, savePhoto, uploadImage, removeImage, deletePhoto, changePassword } from './api.js';
 import { categoryNamesRu, validatePhoto } from './data.js';
 import { prepareImage } from './images.js';
 
@@ -185,7 +185,25 @@ $('#logout').addEventListener('click', async () => {
   setBusy(true);
   try { await logout(); message('Вы вышли из панели.'); }
   catch { message('Вход в этой вкладке очищен. Сервер не ответил на запрос выхода; при необходимости завершите сессии в Supabase.', true); }
-  finally { clearQueue(); photos = []; $('#photo-library').replaceChildren(); $('#workspace').hidden = true; $('#login-section').hidden = false; setBusy(false); }
+  finally { clearQueue(); photos = []; $('#password-form').reset(); $('#password-status').textContent = ''; $('#photo-library').replaceChildren(); $('#workspace').hidden = true; $('#login-section').hidden = false; setBusy(false); }
+});
+
+$('#password-form').addEventListener('submit', async (event) => {
+  event.preventDefault();
+  if (busy) return;
+  const form = event.currentTarget;
+  const values = new FormData(form);
+  const result = $('#password-status');
+  result.classList.remove('error');
+  if (values.get('new_password') !== values.get('confirm_password')) {
+    result.textContent = 'Пароли не совпадают.'; result.classList.add('error'); return;
+  }
+  setBusy(true); result.textContent = 'Меняем пароль…';
+  try {
+    await changePassword(String(values.get('current_password')), String(values.get('new_password')));
+    form.reset(); result.textContent = 'Пароль изменён. При следующем входе используйте новый пароль.';
+  } catch (error) { result.textContent = error.message; result.classList.add('error'); }
+  finally { setBusy(false); }
 });
 
 if (!configured) {

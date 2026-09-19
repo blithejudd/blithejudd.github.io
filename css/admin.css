@@ -16,6 +16,11 @@
 .admin-status:not(:empty) { background: #e3e9d7; border: 1px solid #9aa686; padding: 15px 20px; }
 .admin-status.error:not(:empty) { background: #f6e5de; border-color: #c29a87; }
 .admin-heading { display: flex; justify-content: space-between; gap: 20px; align-items: center; }.admin-heading h1 { margin-top: 10px; }
+.account-settings { border: 1px solid var(--line); padding: 18px 22px; margin-top: 24px; }
+.account-settings summary { cursor: pointer; min-height: 28px; }
+.account-settings > p { max-width: 680px; font-size: 13px; margin-top: 18px; }
+.account-settings form { max-width: 440px; margin-top: 20px; }
+.account-settings .error { color: #773e30; }
 .admin-tabs { display: flex; gap: 24px; border-bottom: 1px solid var(--line); margin: 32px 0; }
 .admin-tabs button { min-height: 52px; border-bottom: 2px solid transparent; padding-inline: 0; }
 .admin-tabs button[aria-pressed=true] { border-bottom-color: var(--ink); }.admin-tabs span { color: var(--muted); margin-left: 6px; }

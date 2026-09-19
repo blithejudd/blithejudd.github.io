@@ -5,3 +5,4 @@ node_modules/
 test-results/
 *.log
 supabase/.temp/
+Gulievi-admin-access.*

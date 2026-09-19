@@ -20,16 +20,16 @@ try {
     await new Promise((resolve) => setTimeout(resolve, 10000));
   }
   assert.ok(deployed, 'Pages deployment did not finish within polling window.');
-  for (const path of ['index.html', 'admin/index.html', 'css/site.css', 'css/admin.css', 'js/config.js', 'js/api.js', 'js/main.js', 'js/admin.js', 'images/optimized/hero-bg-480.webp', 'CNAME']) {
+  for (const path of ['index.html', 'admin/index.html', 'css/site.css', 'css/admin.css', 'js/config.js', 'js/api.js', 'js/main.js', 'js/admin.js', 'js/gallery.js', 'fonts/allura.ttf', 'images/optimized/hero-bg-480.webp', 'CNAME']) {
     const response = await get(`https://gulievi.me/${path}?deployment=${runId}`);
     assert.equal(response.status, 200, path);
     const actual = Buffer.from(await response.arrayBuffer());
     const expected = await readFile(new URL(`../${path}`, import.meta.url));
-    if (path.endsWith('.webp')) assert.deepEqual(actual, expected, path);
+    if (/\.(webp|ttf)$/.test(path)) assert.deepEqual(actual, expected, path);
     else assert.equal(actual.toString('utf8').replace(/\r\n/g, '\n'), expected.toString('utf8').replace(/\r\n/g, '\n'), path);
     console.log(`PASS deployed ${path}`);
   }
-  for (const path of ['.env.management', '.env.management.txt']) {
+  for (const path of ['.env.management', '.env.management.txt', 'Gulievi-admin-access.json']) {
     const response = await get(`https://gulievi.me/${path}`);
     assert.equal(response.status, 404, 'Local secret file must not be deployed.');
     console.log(`PASS not exposed ${path}`);

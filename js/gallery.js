@@ -42,7 +42,7 @@ export async function initGallery() {
       if (photo.source === 'local') {
         const base = photoUrl(photo).replace(/\/([^/]+)\.webp$/, '/optimized/$1');
         img.srcset = `${base}-480.webp 480w, ${base}-960.webp 960w`;
-        img.sizes = '(max-width: 700px) 44vw, 42vw';
+        img.sizes = '(max-width: 700px) 44vw, (max-width: 1440px) 29vw, 410px';
       }
       frame.append(img);
       const details = document.createElement('div');
