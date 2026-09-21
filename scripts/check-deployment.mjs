@@ -7,7 +7,7 @@ const headers = { 'User-Agent': 'portfolio-deployment-check', 'Cache-Control': '
 const get = (url) => fetch(url, { headers, signal: AbortSignal.timeout(20000) });
 try {
   let deployed = false;
-  for (let attempt = 0; attempt < 24; attempt++) {
+  for (let attempt = 0; attempt < 60; attempt++) {
     const response = await get(`https://api.github.com/repos/blithejudd/blithejudd.github.io/actions/runs/${runId}`);
     assert.equal(response.status, 200);
     const run = await response.json();
