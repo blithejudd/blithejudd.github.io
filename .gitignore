@@ -3,6 +3,8 @@
 !.env.example
 node_modules/
 test-results/
+.codex-remote-attachments/
+_site/
 *.log
 supabase/.temp/
 Gulievi-admin-access.*

@@ -4,13 +4,15 @@ import { fileURLToPath } from 'node:url';
 import path from 'node:path';
 
 const root = fileURLToPath(new URL('../', import.meta.url));
+const previewApi = process.argv.includes('--cms-demo') ? await (await import('./preview-api.mjs')).createPreviewApi(root) : null;
 const types = { '.html': 'text/html; charset=utf-8', '.css': 'text/css; charset=utf-8', '.js': 'text/javascript; charset=utf-8', '.svg': 'image/svg+xml', '.webp': 'image/webp', '.ttf': 'font/ttf', '.json': 'application/json', '.xml': 'application/xml', '.txt': 'text/plain' };
 const server = http.createServer(async (request, response) => {
   try {
     const url = new URL(request.url, 'http://localhost');
+    if (previewApi && await previewApi(url, request, response)) return;
     const relative = decodeURIComponent(url.pathname).replace(/^\/+/, '');
     const segments = relative.split(/[\\/]/);
-    if (segments.some((part) => part.startsWith('.')) || ['supabase', 'scripts', 'tests', 'docs'].includes(segments[0])) throw new Error('Not found');
+    if (segments.some((part) => part.startsWith('.')) || ['supabase', 'scripts', 'tests', 'test-results', 'docs'].includes(segments[0])) throw new Error('Not found');
     let file = path.resolve(root, relative);
     const withinRoot = path.relative(root, file);
     if (withinRoot.startsWith('..') || path.isAbsolute(withinRoot)) throw new Error('Not found');
@@ -23,4 +25,4 @@ const server = http.createServer(async (request, response) => {
     response.end(content);
   } catch { response.writeHead(404); response.end('Not found'); }
 });
-server.listen(Number(process.env.PORT || 4173), '127.0.0.1', () => console.log('Preview: http://127.0.0.1:4173'));
+server.listen(Number(process.env.PORT || 4173), '127.0.0.1', () => console.log(`Preview: http://127.0.0.1:${process.env.PORT || 4173}${previewApi ? '/admin/ (local CMS demo)' : '/'}`));

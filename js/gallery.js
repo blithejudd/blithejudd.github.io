@@ -1,5 +1,5 @@
-import { configured, listPhotos, photoUrl } from './api.js';
-import { initialPhotos, categories, filterPhotos } from './data.js';
+import { configured, listPhotos, photoUrl, listCategories } from './api.js';
+import { initialPhotos, categories, initialCategories, setCategories, filterPhotos } from './data.js';
 
 export async function initGallery() {
   const grid = document.querySelector('#gallery');
@@ -83,8 +83,28 @@ export async function initGallery() {
   async function load() {
     retry.hidden = true; status.textContent = 'ფოტოები იტვირთება…';
     try {
+      let categoryRows = initialCategories;
+      if (configured) {
+        try { categoryRows = await listCategories(); } catch (error) { if (error.status !== 404) throw error; }
+      }
+      setCategories(categoryRows.filter((row) => row.visible));
+      const filters = document.querySelector('#filters');
+      const all = filters.querySelector('[data-filter="all"]');
+      filters.replaceChildren(all);
+      Object.entries(categories).forEach(([id, name]) => {
+        const button = document.createElement('button'); button.type = 'button'; button.dataset.filter = id; button.textContent = name;
+        button.setAttribute('aria-pressed', String(category === id)); filters.append(button);
+      });
+      if (category !== 'all' && !Object.hasOwn(categories, category)) category = 'all';
+      all.setAttribute('aria-pressed', String(category === 'all'));
+      const select = document.querySelector('#contact-form [name=category]');
+      select.required = true;
+      const selected = select.value; select.replaceChildren();
+      Object.entries(categories).forEach(([id, name]) => { const option = document.createElement('option'); option.value = id; option.textContent = name; select.append(option); });
+      if (Object.hasOwn(categories, selected)) select.value = selected;
       // Once connected, the database is authoritative: never resurrect hidden/deleted photos.
       photos = configured ? await listPhotos() : initialPhotos;
+      photos = photos.filter((photo) => Object.hasOwn(categories, photo.category));
       render();
     } catch {
       status.textContent = 'გალერეა დროებით მიუწვდომელია. გთხოვთ, სცადოთ ხელახლა.';

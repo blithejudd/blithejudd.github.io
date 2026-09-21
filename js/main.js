@@ -1,6 +1,10 @@
 import { initGallery } from './gallery.js';
-import { config } from './config.js';
-import { configured, sendContact } from './api.js';
+import { configured, sendContact, contactEnabled, loadConnectionSettings } from './api.js';
+import { contactDate, localizeForms } from './forms.js';
+import { initContent } from './content.js';
+
+localizeForms();
+initContent();
 
 const menu = document.querySelector('#navigation');
 const toggle = document.querySelector('#menu-toggle');
@@ -19,14 +23,16 @@ initGallery();
 const form = document.querySelector('#contact-form');
 const submit = document.querySelector('#contact-submit');
 const status = document.querySelector('#contact-status');
-if (configured && config.contactEnabled) { submit.disabled = false; status.textContent = ''; }
+loadConnectionSettings().then((enabled) => { submit.disabled = !enabled; if (enabled) status.textContent = ''; });
 form.addEventListener('submit', async (event) => {
   event.preventDefault();
-  if (!configured || !config.contactEnabled || submit.disabled) return;
+  if (!configured || !contactEnabled || submit.disabled) return;
   submit.disabled = true; status.textContent = 'იგზავნება…';
   try {
-    await sendContact(Object.fromEntries(new FormData(form)));
-    form.reset(); status.textContent = 'გმადლობთ! თქვენი მოთხოვნა მიღებულია. მალე დაგიკავშირდებით.';
+    const values = Object.fromEntries(new FormData(form));
+    values.date = contactDate(values.date);
+    const result = await sendContact(values);
+    form.reset(); status.textContent = result?.simulated ? 'დემო მოთხოვნა მიღებულია. რეალური შეტყობინება არ გაგზავნილა.' : 'გმადლობთ! თქვენი მოთხოვნა მიღებულია. მალე დაგიკავშირდებით.';
   } catch {
     status.textContent = 'გაგზავნა ვერ მოხერხდა. სცადეთ მოგვიანებით ან მომწერეთ ინსტაგრამზე.';
   } finally { submit.disabled = false; }

@@ -1,4 +1,5 @@
 @charset "UTF-8";
+.preview-note { padding: 10px 22px; text-align: center; background: #e3e9d7; color: #252621; font-size: 12px; }
 @font-face { font-family: "Allura"; src: url("../fonts/allura.ttf") format("truetype"); font-style: normal; font-weight: 400; font-display: swap; }
 :root {
   --paper: #faf9f6; --ink: #252621; --muted: #65665d; --line: #deddd5; --olive: #575e44;
@@ -128,6 +129,10 @@ textarea { resize: vertical; }
 .form-note { font-size: 10px !important; margin-top: 12px; }
 .honeypot { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
 .site-footer { padding-block: 45px 28px; }
+.footer-contacts { display: flex; flex-wrap: wrap; gap: 24px 64px; padding-bottom: 36px; }
+.footer-contacts a { display: grid; gap: 8px; min-width: 0; max-width: 100%; }
+.footer-contacts span { font-size: 10px; color: var(--muted); }
+.footer-contacts strong { font-size: clamp(16px, 2vw, 23px); font-weight: 400; overflow-wrap: anywhere; }
 .footer-name { font-family: var(--serif); font-size: clamp(38px, 8vw, 116px); letter-spacing: -.05em; line-height: 1.1; }
 .site-footer > div { border-top: 1px solid var(--line); margin-top: 30px; padding-top: 22px; display: flex; gap: 30px; font-size: 9px; color: var(--muted); }
 .site-footer > div > span:first-child { margin-right: auto; }

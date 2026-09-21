@@ -10,7 +10,7 @@ foreach ($folder in @('scripts', 'tests')) {
         if ($LASTEXITCODE -ne 0) { throw "Syntax check failed: $($_.Name)" }
     }
 }
-& node --test (Join-Path $root 'tests\unit.test.mjs')
+& node --test (Join-Path $root 'tests\unit.test.mjs') (Join-Path $root 'tests\preview-api.test.mjs') (Join-Path $root 'tests\connections.test.mjs')
 if ($LASTEXITCODE -ne 0) { throw 'Unit tests failed' }
 & git -C $root diff --check
 if ($LASTEXITCODE -ne 0) { throw 'Git whitespace check failed' }

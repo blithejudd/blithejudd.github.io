@@ -1,0 +1,35 @@
+name: Publish portfolio
+on:
+  push:
+    branches: [main]
+    paths: ['index.html', 'admin/**', 'css/**', 'js/**', 'fonts/**', 'images/**', 'favicon.svg', 'robots.txt', 'sitemap.xml', 'CNAME', '.nojekyll', '.github/workflows/pages.yml', 'scripts/package-site.mjs']
+  workflow_dispatch:
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+concurrency:
+  group: pages
+  cancel-in-progress: false
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test site logic
+        run: node --test tests/unit.test.mjs tests/connections.test.mjs tests/preview-api.test.mjs
+      - name: Package public files only
+        run: node scripts/package-site.mjs
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+      - name: Publish
+        id: deployment
+        uses: actions/deploy-pages@v4
