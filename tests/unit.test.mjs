@@ -36,12 +36,13 @@ test('content validation rejects unsafe links, invalid images and out-of-range l
   assert.equal(validateContact({ ...contact, category: 'c-new-category' }).category, 'c-new-category');
 });
 
-test('site UI sources are Georgian and avoid browser-localized date controls', async () => {
-  for (const file of ['index.html', 'admin/index.html', ...(await readdir(new URL('js/', root))).map((name) => `js/${name}`)]) {
+test('Georgian UI sources avoid browser-localized date controls', async () => {
+  for (const file of ['admin/index.html', ...(await readdir(new URL('js/', root))).map((name) => `js/${name}`)]) {
     const source = await readFile(new URL(file, root), 'utf8');
     assert.doesNotMatch(source, /[А-Яа-яЁё]/, file);
   }
   const html = await readFile(new URL('index.html', root), 'utf8');
+  assert.match(html, /<html lang="ka">/);
   assert.doesNotMatch(html, /type="date"/);
   assert.match(html, /id="hero-title" class="autograph hero-autograph" lang="en">Zuka Gulievi/);
 });
@@ -92,14 +93,15 @@ test('contact validation accepts normal requests and rejects malformed requests'
   assert.ok(telegramMessage({ ...contact, message: '<b>text</b>' }).includes('<b>text</b>'));
 });
 test('local HTML references exist and IDs are unique', async () => {
-  for (const relative of ['index.html', 'admin/index.html']) {
+  for (const relative of ['index.html', 'admin/index.html', 'en/photographer-tbilisi/index.html', 'ru/fotograf-tbilisi/index.html']) {
     const file = new URL(relative, root);
     const html = await readFile(file, 'utf8');
     const ids = [...html.matchAll(/\bid="([^"]+)"/g)].map((match) => match[1]);
     assert.equal(ids.length, new Set(ids).size);
     for (const [, value] of html.matchAll(/(?:src|href)="([^"]+)"/g)) {
       if (/^(?:https?:|#)/.test(value)) continue;
-      await access(new URL(value, file));
+      const local = value.startsWith('/') ? new URL(value.slice(1), root) : new URL(value, file);
+      await access(local.pathname.endsWith('/') ? new URL('index.html', local) : local);
     }
   }
 });
