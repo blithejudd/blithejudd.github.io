@@ -4,7 +4,7 @@ import assert from 'node:assert/strict';
 const root = new URL('../', import.meta.url), output = new URL('_site/', root);
 await mkdir(output, { recursive: true });
 assert.equal((await readdir(output)).length, 0, 'Package directory must be empty; use a fresh checkout for deployment.');
-const entries = ['index.html','admin','css','js','fonts','images','favicon.svg','robots.txt','sitemap.xml','CNAME','.nojekyll'];
+const entries = ['index.html','admin','css','js','fonts','images','en','ru','favicon.svg','robots.txt','sitemap.xml','CNAME','.nojekyll'];
 for (const entry of entries) await cp(new URL(entry, root), new URL(entry, output), { recursive: true });
 const { config } = await import('../js/config.js');
 assert.match(config.supabaseUrl, /^https:\/\/[a-z0-9-]+\.supabase\.co$/);

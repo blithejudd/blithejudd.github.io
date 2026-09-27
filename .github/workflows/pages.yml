@@ -2,7 +2,7 @@ name: Publish portfolio
 on:
   push:
     branches: [main]
-    paths: ['index.html', 'admin/**', 'css/**', 'js/**', 'fonts/**', 'images/**', 'favicon.svg', 'robots.txt', 'sitemap.xml', 'CNAME', '.nojekyll', '.github/workflows/pages.yml', 'scripts/package-site.mjs']
+    paths: ['index.html', 'admin/**', 'css/**', 'js/**', 'fonts/**', 'images/**', 'en/**', 'ru/**', 'favicon.svg', 'robots.txt', 'sitemap.xml', 'CNAME', '.nojekyll', '.github/workflows/pages.yml', 'scripts/package-site.mjs']
   workflow_dispatch:
 permissions:
   contents: read

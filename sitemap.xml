@@ -1,2 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><url><loc>https://gulievi.me/</loc></url></urlset>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url><loc>https://gulievi.me/</loc><xhtml:link rel="alternate" hreflang="ka" href="https://gulievi.me/"/><xhtml:link rel="alternate" hreflang="en" href="https://gulievi.me/en/photographer-tbilisi/"/><xhtml:link rel="alternate" hreflang="ru" href="https://gulievi.me/ru/fotograf-tbilisi/"/></url>
+  <url><loc>https://gulievi.me/en/photographer-tbilisi/</loc><xhtml:link rel="alternate" hreflang="ka" href="https://gulievi.me/"/><xhtml:link rel="alternate" hreflang="en" href="https://gulievi.me/en/photographer-tbilisi/"/><xhtml:link rel="alternate" hreflang="ru" href="https://gulievi.me/ru/fotograf-tbilisi/"/></url>
+  <url><loc>https://gulievi.me/ru/fotograf-tbilisi/</loc><xhtml:link rel="alternate" hreflang="ka" href="https://gulievi.me/"/><xhtml:link rel="alternate" hreflang="en" href="https://gulievi.me/en/photographer-tbilisi/"/><xhtml:link rel="alternate" hreflang="ru" href="https://gulievi.me/ru/fotograf-tbilisi/"/></url>
+</urlset>
