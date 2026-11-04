@@ -12,7 +12,7 @@ export async function initLanding() {
     const visibleCategories = new Set(categories.filter((category) => category.visible).map((category) => category.id));
     const gallery = values['portfolio.visible'] === false ? [] : photos.filter((photo) => photo.published === true && visibleCategories.has(photo.category)).slice(0, 3).map((photo) => ({ src: photoUrl(photo), alt: photo.alt || '' }));
     document.querySelectorAll('[data-landing-instagram]').forEach((link) => {
-      if (instagram) link.href = instagram; else link.remove();
+      if (instagram) { link.href = instagram; link.hidden = false; } else link.remove();
     });
     document.querySelectorAll('[data-landing-price]').forEach((element, index) => {
       element.closest('section').hidden = values['services.visible'] === false;
