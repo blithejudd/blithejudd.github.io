@@ -5,6 +5,7 @@
 - `fonts/allura.ttf`, `fonts/OFL-Allura.txt` — локальный шрифт авторской подписи и лицензия SIL OFL; подпись не зависит от Google Fonts.
 - `js/main.js` → `gallery.js`, `api.js`, `config.js` — меню, форма, запуск галереи.
 - `js/gallery.js` → `data.js`, `api.js` — фильтры, DOM-карточки, лайтбокс, клавиши/свайпы.
+- `js/landing.js` → `api.js`, `content.js` — актуальные фотографии, цены и Instagram для EN/RU; учитывает видимость категорий/разделов/услуг, не подставляет старые изображения и числовые цены при отказе API. Локализованные описания остаются в HTML.
 - `js/data.js` — исходные шесть фото, категории, чистая валидация.
 - `js/config.js` — публичные URL/ключ Supabase и совместимый fallback формы; после миграции включением управляет сервер.
 - `js/api.js` — fetch REST Auth/PostgREST/Storage/Edge Function; авторизация, обновление сессии; нет SDK-зависимостей.
@@ -17,6 +18,7 @@
 - `scripts/serve.mjs` — локальный HTTP preview на 127.0.0.1:4173.
 - `scripts/verify.ps1`, `tests/unit.test.mjs` — синтаксис, чистая логика, ссылки, статические guards.
 - `tests/browser.mjs` — реальный Chrome/CDP, проверка UI и mock API. Без npm-зависимостей.
+- `tests/landing.test.mjs` — EN/RU: published-only данные, скрытые категории и услуги, безопасный отказ backend. Включён в verify.ps1 и Pages workflow.
 - `scripts/optimize-images.py` — необязательная генерация превью через Pillow.
 - `scripts/supabase-setup.mjs` — локальный Management API оператор: inspect/provision/audit. Читает игнорируемый `.env.management`, не выводит токен, provisioning разрешён только для пустого проекта.
 - `scripts/owner-access.mjs create|test` — локальное создание первого временного владельца (только при отсутствии пользователей/владельцев) и live-проверки на одноразовых записях. Привилегированный ключ только в памяти; данные входа в `%USERPROFILE%\Gulievi-admin-access.json`, вне репозитория.
