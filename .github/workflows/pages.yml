@@ -23,7 +23,7 @@ jobs:
         with:
           node-version: '22'
       - name: Test site logic
-        run: node --test tests/unit.test.mjs tests/connections.test.mjs tests/preview-api.test.mjs
+        run: node --test tests/unit.test.mjs tests/connections.test.mjs tests/preview-api.test.mjs tests/landing.test.mjs
       - name: Package public files only
         run: node scripts/package-site.mjs
       - uses: actions/configure-pages@v5

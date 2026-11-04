@@ -134,7 +134,17 @@ export async function initContent() {
     surfaces.forEach((element) => { element.hidden = false; }); status.remove();
   } catch (error) {
     if (error.status === 404) { surfaces.forEach((element) => { element.hidden = false; }); status.remove(); return; }
-    status.textContent = 'საიტის შინაარსი დროებით მიუწვდომელია. ';
-    const retry = document.createElement('button'); retry.type = 'button'; retry.className = 'button'; retry.textContent = 'ხელახლა ცდა'; retry.addEventListener('click', () => location.reload()); status.append(retry);
+    // CMS failure must not restore photos, prices or contacts withdrawn from publication.
+    const fallback = document.createElement('section'); fallback.id = 'content-unavailable'; fallback.className = 'wrap section-space'; fallback.setAttribute('role', 'main'); fallback.setAttribute('aria-labelledby', 'content-unavailable-title');
+    const heading = document.createElement('h1'); heading.id = 'content-unavailable-title'; heading.textContent = 'Zuka Gulievi';
+    status.textContent = 'საიტის შინაარსი დროებით მიუწვდომელია. გთხოვთ, სცადოთ მოგვიანებით.';
+    const actions = document.createElement('div'); actions.className = 'hero-actions';
+    const retry = document.createElement('button'); retry.type = 'button'; retry.className = 'button'; retry.textContent = 'ხელახლა ცდა'; retry.addEventListener('click', () => location.reload());
+    actions.append(retry);
+    for (const [href, label, language] of [['en/photographer-tbilisi/', 'English portfolio', 'en'], ['ru/fotograf-tbilisi/', '\u0420\u0443\u0441\u0441\u043a\u0438\u0439', 'ru'], ['admin/', 'საიტის მართვა', 'ka']]) {
+      const link = document.createElement('a'); link.href = href; link.className = 'text-link'; link.textContent = label; link.lang = language; actions.append(link);
+    }
+    status.className = ''; fallback.append(heading, status, actions); document.body.prepend(fallback);
+    const skip = document.querySelector('.skip-link'); if (skip) skip.href = '#content-unavailable';
   }
 }

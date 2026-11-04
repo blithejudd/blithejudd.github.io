@@ -21,7 +21,7 @@ try {
   }
   assert.ok(deployed, 'Pages deployment did not finish within polling window.');
   const scripts = (await readdir(new URL('../js/', import.meta.url))).filter((name) => name.endsWith('.js')).map((name) => `js/${name}`);
-  for (const path of ['index.html', 'admin/index.html', 'css/site.css', 'css/admin.css', ...scripts, 'fonts/allura.ttf', 'images/optimized/hero-bg-480.webp', 'CNAME']) {
+  for (const path of ['index.html', 'admin/index.html', 'en/photographer-tbilisi/index.html', 'ru/fotograf-tbilisi/index.html', 'css/site.css', 'css/admin.css', 'css/landing.css', ...scripts, 'fonts/allura.ttf', 'images/optimized/hero-bg-480.webp', 'CNAME']) {
     const response = await get(`https://gulievi.me/${path}?deployment=${runId}`);
     assert.equal(response.status, 200, path);
     const actual = Buffer.from(await response.arrayBuffer());

@@ -121,15 +121,26 @@ function renderLibrary(reset = false) {
       try { values = valuesFrom(card); } catch (error) { message(error.message, true); return; }
       setBusy(true);
       message('ცვლილებები ინახება…');
+      let replacementPath;
       try {
         if (replacement.files[0]) {
-          values.image_path = await uploadImage(await prepareImage(replacement.files[0])); values.source = 'storage';
+          replacementPath = await uploadImage(await prepareImage(replacement.files[0]));
+          values.image_path = replacementPath; values.source = 'storage';
         }
         const saved = await savePhoto(photo.id, values);
         photos = photos.map((item) => item.id === photo.id ? saved : item).sort((a, b) => a.sort_order - b.sort_order || a.id.localeCompare(b.id));
         card.remove();
-        renderLibrary(); message('ცვლილებები შენახულია. საიტზე გამოჩნდება გვერდის განახლების შემდეგ.');
-      } catch (error) { message(error.message, true); }
+        renderLibrary(); message('ცვლილებები შენახულია. საიტზე გამოჩნდება გვერდის განახლების შემდეგ.' + (replacementPath && photo.source === 'storage' ? ` წინა ფაილი საცავში დარჩა და ძველი ბმულით საჯაროდ ხელმისაწვდომია. შეამოწმეთ ხელით: ${photo.image_path}` : ''));
+      } catch (error) {
+        let detail = error.message;
+        if (replacementPath) {
+          if (error.status >= 400 && error.status < 500) {
+            try { await removeImage(replacementPath); }
+            catch { detail += ` ახალი ფაილი საცავში დარჩა. შეამოწმეთ ხელით: ${replacementPath}`; }
+          } else detail += ` შენახვა შესაძლოა შესრულდა. ხელახლა ცდამდე შეამოწმეთ ფოტოების სია და ფაილი: ${replacementPath}`;
+        }
+        message(detail, true);
+      }
       finally { setBusy(false); }
     });
   });

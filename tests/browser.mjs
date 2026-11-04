@@ -91,7 +91,7 @@ try {
   assert.equal(await evaluate('document.documentElement.lang'), 'ka');
   assert.equal(await evaluate('document.querySelector("[name=date]").type'), 'text');
   assert.equal(await evaluate('document.querySelector("[name=date]").placeholder'), 'დღე.თვე.წელი');
-  assert.doesNotMatch(await evaluate('document.body.innerText'), /[А-Яа-яЁё]/);
+  assert.doesNotMatch(await evaluate('document.body.innerText.replaceAll(document.querySelector("a[lang=ru]").innerText, "")'), /[А-Яа-яЁё]/);
   await evaluate('document.fonts.ready');
   await evaluate('document.querySelectorAll("img").forEach(img => img.loading = "eager")');
   await waitFor('Array.from(document.images).every(img => !img.getAttribute("src") || (img.complete && img.naturalWidth > 0))');
@@ -152,6 +152,7 @@ try {
   let owner = false;
   let failGallery = false;
   let failContent = false;
+  let failPhotoPatch = false;
   let uploads = 0;
   let removals = 0;
   let contactRequests = 0;
@@ -188,6 +189,7 @@ try {
       }
     }
     if (url.pathname === '/rest/v1/site_content') {
+      if (failContent === 'network') return command('Fetch.failRequest', { requestId, errorReason: 'ConnectionFailed' });
       if (failContent) return fulfill(requestId, {}, 503);
       const id = url.searchParams.get('id')?.replace('eq.', '');
       if (request.method === 'GET') return fulfill(requestId, contentRows.filter((row) => !id || row.id === id));
@@ -199,7 +201,11 @@ try {
       if (request.method === 'GET') return failGallery ? fulfill(requestId, {}, 503) : fulfill(requestId, rows.filter((row) => !url.searchParams.has('published') || row.published));
       const id = url.searchParams.get('id')?.replace('eq.', '');
       if (request.method === 'POST') { const row = { ...JSON.parse(request.postData), id: '22222222-2222-4222-8222-222222222222' }; rows.push(row); return fulfill(requestId, [row], 201); }
-      if (request.method === 'PATCH') { const row = rows.find((item) => item.id === id); Object.assign(row, JSON.parse(request.postData)); return fulfill(requestId, [row]); }
+      if (request.method === 'PATCH') {
+        if (failPhotoPatch === 'network') return command('Fetch.failRequest', { requestId, errorReason: 'ConnectionFailed' });
+        if (failPhotoPatch) return fulfill(requestId, {}, 409);
+        const row = rows.find((item) => item.id === id); Object.assign(row, JSON.parse(request.postData)); return fulfill(requestId, [row]);
+      }
       if (request.method === 'DELETE') { const deleted = rows.filter((row) => row.id === id); rows = rows.filter((row) => row.id !== id); return fulfill(requestId, deleted); }
     }
     if (url.pathname.startsWith('/storage/v1/object/public/')) {
@@ -295,9 +301,28 @@ try {
   assert.equal(rows[0].category, newCategory);
   const replacementNode = await command('DOM.querySelector', { nodeId: documentNode.root.nodeId, selector: '#photo-library .file-picker input' });
   await command('DOM.setFileInputFiles', { nodeId: replacementNode.nodeId, files: [path.join(root, 'images/portfolio-2.webp')] });
+  failPhotoPatch = true;
+  await evaluate('document.querySelector("#photo-library form").requestSubmit()');
+  await waitFor('document.querySelector("#admin-status").textContent.includes("(409)")');
+  assert.equal(removals, 2, 'definite replacement rejection removes only the new upload');
+  assert.equal(rows[0].source, 'local');
+  failPhotoPatch = 'network';
+  await evaluate('document.querySelector("#photo-library form").requestSubmit()');
+  await waitFor('document.querySelector("#admin-status").textContent.includes("შენახვა შესაძლოა შესრულდა")');
+  assert.equal(removals, 2, 'ambiguous replacement failure preserves the upload');
+  assert.equal(rows[0].source, 'local');
+  failPhotoPatch = false;
   await evaluate('document.querySelector("#photo-library form").requestSubmit()');
   await waitFor('document.querySelector("#photo-library .file-info").textContent.includes("Supabase")');
   assert.equal(rows[0].source, 'storage', 'portfolio photo replacement');
+  const oldStoragePath = rows[0].image_path;
+  const nextReplacement = await command('DOM.querySelector', { nodeId: documentNode.root.nodeId, selector: '#photo-library .file-picker input' });
+  await command('DOM.setFileInputFiles', { nodeId: nextReplacement.nodeId, files: [path.join(root, 'images/portfolio-2.webp')] });
+  await evaluate('document.querySelector("#photo-library form").requestSubmit()');
+  await waitFor(`document.querySelector("#admin-status").textContent.includes(${JSON.stringify(oldStoragePath)})`);
+  assert.equal(await evaluate('document.querySelector("#admin-status").textContent.includes("ძველი ბმულით საჯაროდ ხელმისაწვდომია")'), true);
+  assert.notEqual(rows[0].image_path, oldStoragePath);
+  assert.equal(removals, 2, 'old public Storage image is retained for possible CMS references');
   await assertUnsavedCard('category and photo changes');
   await evaluate('document.querySelector("#tab-content").click()');
   await waitFor('document.querySelectorAll("#content-form [name]").length > 50');
@@ -396,8 +421,23 @@ try {
   console.log('PASS mocked contact, backend failure retry and authoritative empty database');
   failContent = true; await go('');
   await waitFor('document.querySelector("main").hidden && document.body.innerText.includes("შინაარსი დროებით მიუწვდომელია")');
+  assert.equal(await evaluate('document.querySelector("#content-unavailable").getAttribute("role")'), 'main');
+  assert.equal(await evaluate('document.querySelector("#content-unavailable [role=status]").textContent.includes("შინაარსი დროებით მიუწვდომელია")'), true);
+  assert.equal(await evaluate('document.querySelector(".skip-link").hash'), '#content-unavailable');
+  assert.deepEqual(await evaluate('Array.from(document.querySelectorAll("#content-unavailable a")).map(link=>link.pathname)'), ['/en/photographer-tbilisi/', '/ru/fotograf-tbilisi/', '/admin/']);
+  assert.equal(await evaluate('Array.from(document.querySelectorAll(".site-header, main, .site-footer")).every(element=>element.hidden)'), true);
+  assert.equal(await evaluate('document.querySelector("#content-unavailable").querySelector("img, form, [data-instagram]")'), null);
+  await command('Emulation.setDeviceMetricsOverride', { width: 320, height: 844, deviceScaleFactor: 1, mobile: true });
+  assert.equal(await evaluate('document.documentElement.scrollWidth <= innerWidth'), true, 'content fallback fits mobile');
+  await screenshot('content-outage-mobile.png');
+  failContent = 'network'; await go('');
+  await waitFor('Boolean(document.querySelector("#content-unavailable"))');
+  assert.equal(await evaluate('document.querySelector("main").hidden'), true, 'network failure also keeps static content hidden');
   failContent = false;
-  console.log('PASS content outage does not resurrect hidden static sections');
+  await evaluate('document.querySelector("#content-unavailable button").click()');
+  await waitFor('!document.querySelector("main").hidden && !document.querySelector("#content-unavailable") && document.body.innerText.includes("ახალი მთავარი აღწერა")');
+  assert.equal(await evaluate('document.querySelector("#services").hidden'), true, 'retry restores published visibility');
+  console.log('PASS accessible content outage screen, static sections stay hidden, retry restores published CMS');
   if (process.argv.includes('--live')) {
     await command('Fetch.disable');
     intercept = null;
