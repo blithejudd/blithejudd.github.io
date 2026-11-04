@@ -25,6 +25,7 @@
 - `scripts/check-deployment.mjs <run-id>` — read-only проверка публичного GitHub Actions run, совпадения ресурсов на домене и отсутствия локальных файлов токена на сайте.
 - `tests/live-public.mjs` — явные проверки реального публичного API и запрета анонимных операций на случайных probe IDs. `tests/browser.mjs --live` дополнительно проверяет реальную галерею и экран входа без mock API.
 - `CNAME`, `.nojekyll`, `robots.txt`, `sitemap.xml`, `favicon.svg` — статическое размещение/метаданные.
+- GitHub Pages Settings → Pages — привязка gulievi.me и Enforce HTTPS; 04.11.2026 подтверждены действительный сертификат для apex/www, обязательный HTTPS и 301 на основной домен с сохранением /admin/.
 
 Границы: браузер не получает service_role/Telegram token и не определяет права самостоятельно. SQL — источник полномочий. Edge Function — единственное место отправки Telegram. После подключения Supabase публичная галерея не подменяет сбой БД старыми локальными фото.
 CMS: `js/content.js` — поля и безопасное применение; `js/cms-admin.js` — редактор/категории; `js/forms.js` — грузинская валидация и дата; `js/confirm.js` — подтверждения. `supabase/migrations/20260920_content_management.sql` — новые таблицы/RLS/FK. `scripts/preview-api.mjs` — локальный демобэкенд. Подробности и production-порядок: `docs/CMS.md`.
